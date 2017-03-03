@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!-- Create Angular module -->
+<html ng-app="myApp">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+ 	<title>JS Bin</title>
+ 	<script type="text/javascript">
+ 		/*create module and assign controller to it*/
+ 		angular.module('myApp', []).controller('MyController', MyController);
+
+
+ 		function MyController($scope){
+ 			$scope.rebels=[
+				{name: 'Luke', profession:'Jedi 2', weapon: 'lightsaber', age:19},
+				{name: 'Ben Kenobi', profession:'Jedi 1', weapon: 'lightsaber2', age:24},
+				{name: 'Chewuiue', profession:'Pilot', weapon: 'bowcaster', age:12},
+				{name: 'New', profession:'Pilot', weapon: 'bowcaster', age:15},
+			];
+
+			$scope.number = 0;
+			$scope.increment = function () {
+				$scope.number = $scope.number + 1;
+			}
+
+			$scope.decrement = function () {
+				$scope.number = $scope.number - 1;
+			}
+		}
+ 	</script>
+</head>
+<body>
+	<div ng-controller = "MyController">
+		{{number}}
+		<p>
+			<button ng-click="increment()">+1</button>
+			<button ng-click="decrement()">-1</button>
+		</p>
+		<ul>
+			<li ng-repeat="rebel in rebels">
+				Name:{{rebel.name}}
+				Age:{{rebel.age}}
+				Profession:{{rebel.profession}}
+				Weapon:{{rebel.weapon}}
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

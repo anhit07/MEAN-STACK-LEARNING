@@ -1,0 +1,25 @@
+{
+  "name": "mean-app",
+  "version": "1.0.0",
+  "description": "MEAN app",
+  "main": "Project/app.js",
+  "scripts": {
+    "start": "node Project/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anhit07"
+  },
+  "keywords": [
+    "mean"
+  ],
+  "author": "Anh Nguyen",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongodb": "^2.2.24",
+    "mongoose": "^4.8.5"
+  }
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!-- Create Angular module -->
+<html ng-app="myApp">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+ 	<title>JS Bin</title>
+ 	<script type="text/javascript">
+ 		/*create module and assign controller to it*/
+ 		angular.module('myApp', [])
+ 			.controller('MyController1', MyController1)
+ 			.controller('MyController2', MyController2)
+
+
+ 		function MyController1(){
+ 			var vm = this;
+ 			vm.name = "controller1";
+		}
+		function MyController2(){
+ 			var vm = this;
+ 			vm.name = "controller2222";
+		}
+ 	</script>
+</head>
+<body>
+	<div ng-controller = "MyController1 as MC1">
+		<div ng-controller = "MyController2 as MC2">
+			{{MC1.name}}
+			{{MC2.name}}
+		</div>
+	</div>
+</body>
+</html>
