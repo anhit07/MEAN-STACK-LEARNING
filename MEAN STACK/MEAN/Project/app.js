@@ -11,6 +11,7 @@ var routes = require('./api/routes');
 
 var filePath = path.join(__dirname, 'app.js');
 var staticPath = path.join(__dirname, 'public');
+var staticAngularPath = path.join(__dirname, '../node_modules');
 
 //Set listening port for server
 app.set('port', 3000);
@@ -24,8 +25,13 @@ app.use(function(req, res, next){
 //Using the static root path for responding
 //app.use('/public', express.static(staticPath));//subset with public folder
 app.use(express.static(staticPath));
+app.use('/node_modules', express.static(staticAngularPath));
+app.use('/fonts', express.static(__dirname + '/fonts'));
 
+//Enable parsing of posted forms
 app.use(bodyParser.urlencoded({ extended : false }));
+
+app.use(bodyParser.json());
 
 app.use('/api',routes);
 

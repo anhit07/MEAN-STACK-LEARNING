@@ -3,12 +3,12 @@ var dburl = 'mongodb://localhost:27017/meanhotel'
 
 mongoose.connect(dburl);
 
-//Add new  Listen to the connection even
+//Listen to the connection event
 mongoose.connection.on('connected', function(){
 	console.log('Mongoose connected to ', dburl);
 });
 
-//Add Listen to the disconnection event
+//Listen to the disconnection event
 mongoose.connection.on('disconnected', function(){
 	console.log('Mongoose disconnected to ', dburl);
 });
@@ -44,5 +44,5 @@ process.once('SIGUSR2', function(){
 	});
 });
 
-//Bring in SCHEMA AND MODEL
+//Bring in SCHEMAS AND MODELS
 require('./hotels.model.js');
