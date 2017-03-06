@@ -15,4 +15,4 @@ var usersSchema = new mongoose.Schema({
 	},
 });
 
-mongoose.model("User", hotelSchema);
+mongoose.model("User", usersSchema);

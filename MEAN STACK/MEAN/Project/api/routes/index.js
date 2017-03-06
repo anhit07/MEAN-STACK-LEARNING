@@ -1,13 +1,22 @@
 var express = require('express');
 var ctrHotels = require('../controllers/hotels.controllers.js');
 var ctrReviews = require('../controllers/reviews.controllers.js');
+var ctrUsers = require('../controllers/users.controllers.js');
 var router = express.Router();
 
 router
-	.route('/hotels')
-
 	//Can change different methods to a single route
-	.get(ctrHotels.hotelsGetAll)//if method is get, run hotelsGetAll
+	.route('/hotels')
+	//If method is get, run authenticate to verify user then run hotelsGetAll
+	/*In case access to url "http://localhost:3000/api/hotels" without Authorization on Header
+	  It will return status: 403 and 'No token provided'(in users.controllers.authenticate)
+
+		In case access to url "http://localhost:3000/api/hotels" with the header includes:
+			Authorization: Bearer + ' ' + token key
+		It will return  req.user = decoded.username and call the next midleware function (ctrHotels.hotelsGetAll)
+	*/
+	.get(ctrUsers.authenticate, ctrHotels.hotelsGetAll)
+
 	.post(ctrHotels.hotelsAddOne);//if method is post, run hotelsAddOne
 
 	/*//POST
@@ -39,5 +48,14 @@ router
 	.get(ctrReviews.reviewGetOne)
 	.put(ctrReviews.reviewUpdateOne)
 	.delete(ctrReviews.reviewDeleteOne);
+
+//Users and Authentication
+router
+	.route('/users/register')
+	.post(ctrUsers.register);
+
+router
+	.route('/users/login')
+	.post(ctrUsers.login);
 
 module.exports = router;

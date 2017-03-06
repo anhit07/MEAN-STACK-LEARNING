@@ -1,5 +1,4 @@
-angular.module('myHotelsApp')
-		.controller('HotelDisplayController', HotelDisplayController);
+angular.module('myHotelsApp').controller('HotelDisplayController', HotelDisplayController);
 
 function HotelDisplayController($route, $routeParams, HoteDataFactory) {
 	var vm = this;

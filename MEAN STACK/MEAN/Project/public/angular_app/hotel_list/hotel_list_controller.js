@@ -1,5 +1,4 @@
-angular.module('myHotelsApp')
-		.controller('HotelListController', HotelListController);
+angular.module('myHotelsApp').controller('HotelListController', HotelListController);
 
 function HotelListController(HoteDataFactory) {
 	var vm = this;
