@@ -2,7 +2,6 @@ angular.module('myHotelsApp').controller('RegisterController', RegisterControlle
 
 function RegisterController($http) {
 	var vm = this;
-	vm.title = "MEAN Hotels App";
 
 	vm.register = function() {
 		var user = {
@@ -16,12 +15,18 @@ function RegisterController($http) {
 			if(vm.password !== vm.passwordRepeat) {
 				vm.error = 'Passwords dont match. Please enter again';
 			} else {
-				$http.post('/api/users/register', user).then(function(result){
-					console.log(result);
-					vm.message = 'Successful registration';
-					vm.error = '';
-				}).catch(function(error){
-					console.log(error);
+				$http.get('/api/users/' +  user.username).then(function(result){
+					if(result.data.isExistingUser === true){
+						vm.error =  'User already exists';
+					} else {
+						$http.post('/api/users/register', user).then(function(result){
+							console.log(result);
+							vm.message = 'Successful registration';
+							vm.error = '';
+						}).catch(function(error){
+							console.log(error);
+						});
+					}
 				});
 			}
 		}

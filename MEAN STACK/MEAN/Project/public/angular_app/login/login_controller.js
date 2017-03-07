@@ -28,6 +28,7 @@ function LoginController($http, $location, $window, AuthFactory, jwtHelper) {//j
 				}
 			}).catch(function(error) {
 				console.log(error);
+				vm.error = 'Unauthorized user';
 			})
 		}
 	};
@@ -36,6 +37,7 @@ function LoginController($http, $location, $window, AuthFactory, jwtHelper) {//j
 		AuthFactory.isLoggedIn = false;
 		delete $window.sessionStorage.token;
 		$location.path('/');
+		vm.error = null;
 	};
 
 	vm.isActiveTab = function(url){

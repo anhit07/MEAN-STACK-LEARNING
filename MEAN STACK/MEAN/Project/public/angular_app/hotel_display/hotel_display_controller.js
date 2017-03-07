@@ -1,21 +1,33 @@
 angular.module('myHotelsApp').controller('HotelDisplayController', HotelDisplayController);
 
-function HotelDisplayController($route, $routeParams, HoteDataFactory) {
+function HotelDisplayController($route, $routeParams, $window, HoteDataFactory, AuthFactory, jwtHelper) {
 	var vm = this;
-	var id = $routeParams.id
+	var id = $routeParams.id;
 
 	HoteDataFactory.hotelDisplay(id).then(function(response){
 		vm.hotel = response.data;
 		vm.stars = _getStartRating(response.data.stars);
 	});
+
 	function _getStartRating(stars) {
 		return new Array(stars);
 	}
 
+	vm.isLoggedIn = function(){
+		if(AuthFactory.isLoggedIn){
+			return true;
+		} else {
+			return false;
+		}
+	};
+
 	vm.addReview = function() {
 		
+		var token = jwtHelper.decodeToken($window.sessionStorage.token);
+		var username = token.username;
+
 		var postData = {
-			name: vm.name,
+			name: username,
 			rating:vm.rating,
 			review: vm.review
 		};
@@ -32,6 +44,6 @@ function HotelDisplayController($route, $routeParams, HoteDataFactory) {
     	} else {
     		vm.isSubmitted = true;
     	}
-    }
+    };
 }
 

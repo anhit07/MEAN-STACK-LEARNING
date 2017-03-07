@@ -7,8 +7,7 @@ var secret =  's3cr3t';
 
 module.exports.register = function(req, res){
   console.log('Registering user');
-
-
+  
   var username = req.body.username;
   var name = req.body.name || null;
   var password = req.body.password;
@@ -17,16 +16,33 @@ module.exports.register = function(req, res){
     username: username,
     name: name,
     password: bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+
   }, function(err, user){
-    if(err){
-      console.log('user created', user);
-      res.status(400).json(err);
-    } else {
-      console.log('User created', user);
-      res.status(201).json(user);  
-    }
+      if(err){
+        console.log('user created', user);
+        res.status(400).json(err);
+      } else {
+        console.log('User created', user);
+        res.status(201).json(user);  
+      }
   });
 };
+
+module.exports.isExistingUser = function(req, res){
+
+  var username = req.params.username;
+  console.log(username);
+  User
+    .findOne({ 'username': username })
+    .exec(function(err, doc){
+
+      if (doc) {
+        res.status(200).json({isExistingUser: true});
+      } else {
+        res.status(200).json({isExistingUser: false});
+      }
+    });
+}
 
 module.exports.login = function(req, res){
   console.log('Logging in user');
