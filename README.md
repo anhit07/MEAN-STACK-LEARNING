@@ -1,4 +1,4 @@
-# HOTEL WEBSITE
+# Hotel Website - MEAN Stack
 This repository contains my project which is a Hotel website built with MEAN Stack (using Node.js, AngularJS, Express and MongoDB)
 The website includes the following modules:
  - User registration, login and the controller authentication functionalities.
