@@ -16,14 +16,22 @@ The website includes the following modules:
 - Then download the database gzip files from [link](https://github.com/anhit07/MEAN-STACK-LEARNING/tree/master/MEAN%20STACK/Mongo_Database/meanhotel)
 - Start MongoDB server $ mongod
 - Import database to the Mongo Shell from the folder stores the database gzip file
-      $ mongorestore --db meanHotel --gzip dbDirPath 
+      
+      - $ mongorestore --db meanHotel --gzip dbDirPath 
+    
     EX: $ mongorestore --db meanHotel --gzip C:\MongoDB\meanhotel
-    Check database by running
-      $ mongo
-      > show dbs
-     If meanHotel database exist, check the collections in it
-      > use meanHotel
-      > db.hotels.find().pretty()
+    
+    - Check database by running
+      
+      - $ mongo
+      
+      - > show dbs
+     
+    - If meanHotel database exist, check the collections in it
+     
+     - > use meanHotel
+     
+     - > db.hotels.find().pretty()
 - Running the project on Node.js command line:
 - Change into the folder where the project source code located. 
     Ex: $ cd hotel-project
